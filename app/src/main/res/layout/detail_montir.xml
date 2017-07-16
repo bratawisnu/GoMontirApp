@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <ImageView
+        android:id="@+id/iv_profil_montir"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:background="@mipmap/ic_launcher"
+        />
+    <TextView
+        android:id="@+id/tv_nama_montir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nama montir"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:layout_below="@id/iv_profil_montir"/>
+
+    <TextView
+        android:id="@+id/tv_usia_montir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="usia"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tv_nama_montir"/>
+
+    <TextView
+        android:id="@+id/tv_tlp_montir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="telepon montir"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tv_usia_montir"/>
+
+    <TextView
+        android:id="@+id/tv_keahlian_montir"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="keahlian montir :"
+        android:textAlignment="inherit"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tv_tlp_montir"/>
+
+    <TextView
+        android:id="@+id/tv_pengalaman_montir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="pengalaman montir :"
+        android:textAlignment="inherit"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tv_keahlian_montir"/>
+
+    <Button
+        android:id="@+id/btn_ambil_bantuan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ambil Bantuan"
+        android:layout_below="@id/tv_pengalaman_montir"/>
+
+    <Button
+        android:id="@+id/btn_tlp_bantuan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telepon Bantuan"
+        android:layout_below="@id/btn_ambil_bantuan"/>
+</RelativeLayout>
