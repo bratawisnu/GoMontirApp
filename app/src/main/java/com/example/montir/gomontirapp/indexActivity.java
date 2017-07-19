@@ -17,10 +17,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.montir.gomontirapp.config.SessionManager;
 import com.example.montir.gomontirapp.config.config;
 
 public class indexActivity extends AppCompatActivity {
     private RelativeLayout orderMontir, profil, lokasiToko, riwayat;
+    private String id;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +34,15 @@ public class indexActivity extends AppCompatActivity {
         lokasiToko  = (RelativeLayout) findViewById(R.id.rel_lokasi_toko);
         riwayat     = (RelativeLayout) findViewById(R.id.rel_riwayat);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        String email = sharedPreferences.getString(config.EMAIL_SHARED_PREF,"Not Available");
-//        Utils.ShowToast("hello "+email);
-        Toast.makeText(indexActivity.this, "hallo "+email, Toast.LENGTH_LONG).show();
+        session = new SessionManager(getApplicationContext());
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+
+        id = session.getId();
+        users usr = new users();
+        Utils.ShowToast("hello "+usr.getUsername());
         CheckUser();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -70,71 +78,61 @@ public class indexActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
         if (id == R.id.menuLogout) {
             //calling logout method when the logout button is clicked
-            logout();
+            logoutUser();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    //Logout function
-    private void logout(){
-        //Creating an alert dialog to confirm logout
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to logout?");
-        alertDialogBuilder.setPositiveButton("Yes",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-
-                        //Getting out sharedpreferences
-                        SharedPreferences preferences = getSharedPreferences(config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
-                        //Getting editor
-                        SharedPreferences.Editor editor = preferences.edit();
-
-                        //Puting the value false for loggedin
-                        editor.putBoolean(config.LOGGEDIN_SHARED_PREF, false);
-
-                        //Putting blank value to email
-                        editor.putString(config.EMAIL_SHARED_PREF, "");
-
-                        //Saving the sharedpreferences
-                        editor.commit();
-
-                        //Starting login activity
-                        Intent intent = new Intent(indexActivity.this, loginActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
-        alertDialogBuilder.setNegativeButton("No",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-
-                    }
-                });
-
-        //Showing the alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-
-    }
 
     @Override
     public void onBackPressed() {
         // TODO Auto-generated method stub
-        super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(), loginActivity.class));
-        indexActivity.this.finish();
+        //super.onBackPressed();
+        //startActivity(new Intent(getApplicationContext(), loginActivity.class));
+        //indexActivity.this.finish();
+        AskOption();
+
+    }
+
+
+    private void logoutUser() {
+
+        session.clearSession();
+
+        // Launching the login activity
+        Intent intent = new Intent(indexActivity.this, loginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
+    private void AskOption()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(indexActivity.this);
+
+        builder.setTitle("Exit");
+        builder.setMessage("Are you sure you want to exit ?");
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                finish();
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 }

@@ -5,7 +5,8 @@ package com.example.montir.gomontirapp.config;
  */
 
 public class config {
-    public static final String LOGIN_URL = "http://192.168.43.47/GoMontirApp/login.php";
+    public static final String URL_DATABASE="http://192.168.43.47/";
+    public static final String LOGIN_URL = URL_DATABASE+"GoMontirApp/login.php";
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_EMAIL = "email";

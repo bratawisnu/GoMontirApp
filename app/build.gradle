@@ -29,5 +29,6 @@ dependencies {
     compile 'com.google.android.gms:play-services:9.8.0'
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
     compile "com.mikepenz:iconics-core:2.8.9@aar"
+
     testCompile 'junit:junit:4.12'
 }
