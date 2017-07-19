@@ -70,11 +70,12 @@ public class order_montirActivity extends FragmentActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         // Add a marker in Sydney, Australia, and move the camera.
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng bojongsoang = new LatLng(-6.9880413,107.6334169);
+        mMap.addMarker(new MarkerOptions().position(bojongsoang).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(bojongsoang));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bojongsoang, 12.0f));
 
     }
+
 }
