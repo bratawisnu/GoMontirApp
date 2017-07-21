@@ -185,7 +185,6 @@ public class loginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     public boolean checkLogin(){
