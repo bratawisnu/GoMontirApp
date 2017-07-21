@@ -97,20 +97,6 @@ public class loginActivity extends AppCompatActivity {
             }
         });
 
-        if (session.isLoggedIn()) {
-            String statLog = session.getStatusLogin();
-            Log.e("TAG","status login :"+statLog);
-            if (statLog.equals("pelanggan")) {
-                // User is already logged in. Take him to main activity
-                Intent intent = new Intent(loginActivity.this, indexActivity.class);
-                intent.putExtra("id", session.getId());
-                startActivity(intent);
-                finish();
-            } else {
-                Utils.ShowToast("Login first !");
-            }
-        }
-
     }
 
     private class GetContacts extends AsyncTask<Void, Void, Void> {
