@@ -39,7 +39,6 @@ public class SessionManager {
     }
 
     public void setLogin(String id, boolean isLoggedIn, String statusLogin) {
-
         editor.putString(KEY_ID, id);
         editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn);
         editor.putString(KEY_STATUS_LOGIN, statusLogin);
